@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require './db.php';
 
@@ -12,12 +12,19 @@ $stmt->execute([$email]);
 
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if($usuario && $usuario['password'] == $senha) {
+if ($usuario && $usuario['password'] == $senha) {
     $_SESSION['usuario'] = $usuario;
-    header("Location: dashboard.php");
+
+    if ($usuario['profile'] == 'Admin') {
+        header("Location: ./admin/index.php");
+    } else if ($usuario['profile'] == 'Professor') {
+        header("Location: ./professor/index.php");
+    } else {
+        header("Location: ./aluno/index.php");
+    }
+
+
     exit;
 } else {
     echo "<script>alert('Usuário ou senha inválidos'); window.location.href = 'index.php';</script>";
 }
-
-?>

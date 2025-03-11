@@ -27,6 +27,9 @@ if (isset($_SESSION['usuario'])) {
         <input type="password" name="password" placeholder="Senha" required>
 
         <button type="submit">Entrar</button>
+
+        <a href="cadastro.php">Cadastre-se</a>
+        <a href="recuperar.php">Recuperar senha</a>
     </form>
 </body>
 
