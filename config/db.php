@@ -1,9 +1,17 @@
 <?php
 
-$host = '92.118.58.75';
-$dbname = 'garotocidadao';
-$username = 'root';
-$password = 'xxxx';
+require __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+// Carregar o arquivo .env
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_NAME'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
 
 try {
     $pdo = new PDO(
